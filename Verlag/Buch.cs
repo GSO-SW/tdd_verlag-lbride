@@ -17,12 +17,12 @@ namespace Verlag
             get => autor;
             set
             {
-                if (value is null)
+                if (value is null or "")
                 {
                     throw new ArgumentException("Der Autor muss einen Namen haben", new ArgumentNullException());
                 }
 
-                autor = Regex.IsMatch(value, @"[#;§%""\0]+") switch
+                autor = Regex.IsMatch(value, @"[#;§%\0]+") switch
                 {
                     false => value,
                     true => throw new ArgumentException("Unerlaubte Zeichen", new FormatException())
