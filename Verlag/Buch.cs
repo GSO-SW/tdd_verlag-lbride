@@ -17,6 +17,11 @@ namespace Verlag
             get => autor;
             set
             {
+                if (value is null)
+                {
+                    throw new ArgumentException("Der Autor muss einen Namen haben", new ArgumentNullException());
+                }
+
                 autor = Regex.IsMatch(value, @"[#;§%""\0]+") switch
                 {
                     false => value,
