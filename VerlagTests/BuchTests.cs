@@ -98,12 +98,23 @@ namespace VerlagTests
 		[DataRow(";")]
 		[DataRow("§")]
 		[DataRow("%")]
-		[DataRow(null)]
 		[ExpectedException(typeof(ArgumentException))]
 		public void Autor_NurSinnvolleEingabenErlaubt(string unerlaubtesZeichen)
 		{
+			//Arrange
+			string erlaubterName = "Autor von Goethe";
+			string unerlaubterName = erlaubterName + unerlaubtesZeichen;
+
+            //Act
+            Buch b = new Buch(unerlaubterName, "titel");
+		}
+
+		[TestMethod]
+		[ExpectedException(typeof(ArgumentNullException))]
+		public void Autor_KannNichtNullSein()
+		{
 			//Act
-			Buch b = new Buch(unerlaubtesZeichen, "titel");
+			Buch b = new Buch(null, "titel");
 		}
 	}
 }
