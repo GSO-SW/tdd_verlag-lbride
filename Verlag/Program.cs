@@ -4,4 +4,11 @@ using System.Text.RegularExpressions;
 
 Console.WriteLine("Hello, World!");
 
-Console.WriteLine(Regex.IsMatch("Leander Bride-test", @"^([\w]+)[\s\-]?([^\W\d]+)$"));
+Regex r = new Regex(@"^([\p{Ll}\p{Lu}\p{Lt}\p{Lo}\p{Pc}\p{Lm}\s\-\']+)$", RegexOptions.IgnoreCase);
+
+var x = r.Matches("Vórname 'nachnáme-test");
+
+foreach (var item in x)
+{
+    Console.WriteLine(item);
+}

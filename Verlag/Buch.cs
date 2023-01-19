@@ -22,7 +22,7 @@ namespace Verlag
                     throw new ArgumentException("Der Autor muss einen Namen haben", new ArgumentNullException());
                 }
 
-                autor = Regex.IsMatch(value, @"[#;§%\0]+") switch
+                autor = Regex.IsMatch(value, @"^([\p{Ll}\p{Lu}\p{Lt}\p{Lo}\p{Pc}\p{Lm}\s\-\']+)$", RegexOptions.IgnoreCase) switch
                 {
                     false => value,
                     true => throw new ArgumentException("Unerlaubte Zeichen", new FormatException())
