@@ -77,13 +77,19 @@ namespace Verlag
                 //Index start = new(4);
                 //Index ende = new(1, true);
 
-                //Range ohneErsteVierStellen = new Range(start, ende);
+                //Range ohneErsteVierStellen = new(start, ende);
 
                 //string isbn10 = isbn13[ohneErsteVierStellen];
 
                 string isbn10 = isbn13[4..^1];
 
-                return isbn10 + PruefZiffer10(isbn10);
+                int pruefZiffer = PruefZiffer10(isbn10);
+
+                return isbn10 + pruefZiffer switch
+                {
+                    10 => 'X',
+                    _ => pruefZiffer
+                };
             }
         }
 
