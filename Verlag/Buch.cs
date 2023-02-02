@@ -93,11 +93,20 @@ namespace Verlag
             }
         }
 
-        public Buch(string autor, string titel, int auflage = 1)
+        private uint seitenzahl;
+
+        public uint Seitenzahl
+        {
+            get { return seitenzahl; }
+            set { seitenzahl = value; }
+        }
+
+        public Buch(string autor, string titel, int auflage = 1, uint seitenzahl = 0)
         {
             Autor = autor;
             Titel = titel;
             Auflage = auflage;
+            Seitenzahl = seitenzahl;
         }
 
         private int PruefZiffer10(string isbn)

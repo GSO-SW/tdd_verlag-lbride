@@ -24,7 +24,35 @@ namespace VerlagTests
 			Assert.AreEqual(auflage, b.Auflage);
 		}
 
-		[TestMethod]
+        public void Buch_HatSeitenzahl()
+        {
+            //Arrange
+            string autor = "J.K. Rowling";
+            string titel = "Harry Potter und der Gefangene von Askaban";
+            int auflage = 1;
+			uint seitenzahl = 448;
+
+            //Act 
+            Buch b = new Buch(autor, titel, auflage, seitenzahl);
+
+            //Assert
+			Assert.AreEqual(seitenzahl, b.Seitenzahl);
+        }
+
+		[TestMethod, ExpectedException(typeof(OverflowException))]
+        public void Buch_SeitenzahlKannNichtNegativSein()
+        {
+            //Arrange
+            string autor = "J.K. Rowling";
+            string titel = "Harry Potter und der Gefangene von Askaban";
+            int auflage = 1;
+            int seitenzahl = -448;
+
+            //Act 
+            Buch b = new Buch(autor, titel, auflage, checked((uint)seitenzahl));
+        }
+
+        [TestMethod]
 		public void Buch_KeineAuflageEntsprichtErsterAuflage()
 		{
 			//Arrange
